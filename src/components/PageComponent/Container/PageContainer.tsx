@@ -87,7 +87,6 @@ export default defineComponent({
             }
         }
       }, {})
-      console.log(slots)
       return (
         <div class="app-page-container">
           <a-page-header
