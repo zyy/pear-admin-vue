@@ -24,7 +24,11 @@ interface PageContainerState {
 
 export default defineComponent({
   name: 'PageContainer',
-  props: Object.assign({}, PageHeaderProps, {}),
+  props: Object.assign({}, PageHeaderProps, {
+    description: {
+      type: String
+    }
+  }),
   setup: function (props, ctx) {
     const defaultPageHeaderProps = getAntdComponentProps(PageHeaderProps, props)
     const route = useRoute()
@@ -66,6 +70,24 @@ export default defineComponent({
     }
     watch(() => route.fullPath, handleRouteChange, { immediate: true })
     return () => {
+      const pageDefaultSlot = Object.keys(ctx.slots).includes('default') ? ctx.slots : null
+      const slots = Object.keys(ctx.slots).reduce((slots, name) => {
+        switch (name) {
+          case 'description':
+            // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+            // @ts-ignore
+            slots.default = ctx.slots[name]
+            return slots
+          case 'default':
+            return slots
+          default:
+            return {
+              ...slots,
+              [name]: ctx.slots[name]
+            }
+        }
+      }, {})
+      console.log(slots)
       return (
         <div class="app-page-container">
           <a-page-header
@@ -73,9 +95,16 @@ export default defineComponent({
               ...defaultPageHeaderProps,
               breadcrumb: pageContainerState.breadcrumb
             }}
-            v-slots={ctx.slots}
+            class="app-page-container-head"
+            v-slots={slots}
           >
+            {!Object.keys(ctx.slots).includes('description') && props.description ? (
+              <div>{props.description}</div>
+            ) : null}
           </a-page-header>
+          <div class="app-page-container-content">
+            {pageDefaultSlot && pageDefaultSlot.default?.()}
+          </div>
         </div>
       )
     }

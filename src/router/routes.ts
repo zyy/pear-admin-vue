@@ -72,7 +72,7 @@ const routes: RouteRecordRaw[] = [
               title: '基础表单',
               i18nTitle: 'menu.form.basic-form'
             },
-            component: () => import(/* webpackChunkName: "basic-form" */ '@/views/dashboard/analysis/analysis.vue')
+            component: () => import(/* webpackChunkName: "basic-form" */ '@/views/form/basicForm/basicForm.vue')
           },
           {
             path: 'step-form',

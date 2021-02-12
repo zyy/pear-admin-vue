@@ -243,7 +243,7 @@ export default defineComponent({
     }
     &-content {
       position: relative;
-      margin: 24px;
+      //margin: 24px;
       //overflow-y: scroll;
       flex: auto;
       min-height: auto;
