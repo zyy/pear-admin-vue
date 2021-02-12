@@ -26,7 +26,7 @@
           class="app-layout-sider-menu"
           v-model:openKeys="openKeys"
           v-model:selectedKeys="selectedKeys"
-          :menu-list="routes"
+          :menu-list="menuList"
         />
       </a-layout-sider>
       <div :class="[!collapsed ? 'app-layout-sider-hidden' : 'app-layout-sider-hidden-collapsed']"></div>
@@ -96,10 +96,12 @@ export default defineComponent({
       menuState.selectedKeys = openKeys
     }, { immediate: true })
 
+    const menuList = routes.find(it => it.path === '/')?.children
+
     return {
       ...toRefs(menuState),
       handleChangeCollapsed,
-      routes
+      menuList
     }
   }
 })
