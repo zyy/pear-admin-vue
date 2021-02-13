@@ -122,7 +122,7 @@ const routes: RouteRecordRaw[] = [
                   title: '搜索列表（文章）',
                   i18nTitle: 'menu.list.search-list.articles'
                 },
-                component: () => import(/* webpackChunkName: "articles" */ '@/views/dashboard/analysis/analysis.vue')
+                component: () => import(/* webpackChunkName: "articles" */ '@/views/list/search/articles/articles.vue')
               },
               {
                 path: 'projects',
