@@ -20,6 +20,7 @@ interface Breadcrumb {
 
 interface PageContainerState {
   breadcrumb: Breadcrumb;
+  title: string;
 }
 
 export default defineComponent({
@@ -39,10 +40,12 @@ export default defineComponent({
         itemRender: () => {
           return undefined
         }
-      }
+      },
+      title: ''
     } as PageContainerState)
 
     const handleRouteChange = () => {
+      // 设置面包屑
       pageContainerState.breadcrumb = {
         routes: route.matched.map(it => {
           return {
@@ -67,6 +70,9 @@ export default defineComponent({
           )
         }
       }
+      // 设置标题title
+      const title = route?.meta?.title
+      pageContainerState.title = title
     }
     watch(() => route.fullPath, handleRouteChange, { immediate: true })
     return () => {
@@ -92,7 +98,8 @@ export default defineComponent({
           <a-page-header
             {...{
               ...defaultPageHeaderProps,
-              breadcrumb: pageContainerState.breadcrumb
+              breadcrumb: pageContainerState.breadcrumb,
+              title: props.title ? props.title : pageContainerState.title
             }}
             class="app-page-container-head"
             v-slots={slots}
