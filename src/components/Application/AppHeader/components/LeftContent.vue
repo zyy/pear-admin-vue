@@ -3,22 +3,18 @@
       <MenuFoldOutlined></MenuFoldOutlined>
   </div>
   <div class="item">
-      <MenuUnfoldOutlined></MenuUnfoldOutlined>
-  </div>
-  <div class="item">
       <RedoOutlined></RedoOutlined>
   </div>
 </template>
 
 <script lang="ts">
-import { MenuFoldOutlined, MenuUnfoldOutlined, RedoOutlined } from '@ant-design/icons-vue'
+import { MenuFoldOutlined, RedoOutlined } from '@ant-design/icons-vue'
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'RightContent',
+  name: 'LeftContent',
   components: {
     MenuFoldOutlined,
-    MenuUnfoldOutlined,
     RedoOutlined
   }
 })

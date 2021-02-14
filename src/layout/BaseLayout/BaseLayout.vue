@@ -19,7 +19,7 @@
         >
           <a>
             <img src="~@/assets/logo.png" alt="">
-            <h1 v-if="!collapsed">Vue3 Ts Admin</h1>
+            <h1 v-if="!collapsed">Pear Admin Vue</h1>
           </a>
         </div>
         <app-menu
