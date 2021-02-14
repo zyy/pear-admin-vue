@@ -4,7 +4,7 @@
       <a-result
     status="success"
     title="Successfully Purchased Cloud Server ECS!"
-    sub-title="Order number: 2017182818828182881 Cloud server configuration takes 1-5 minutes, please wait."
+    sub-title="Order number: 20171828188281828 Cloud server configuration takes 1-5 minutes, please wait."
   >
     <template #extra>
       <a-button key="console" type="primary">Go Console</a-button>

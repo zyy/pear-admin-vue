@@ -23,7 +23,7 @@
       <p>
         <close-circle-outlined :style="{ color: 'red' }" />
         Your account is not yet eligible to apply
-        <a>Apply Unlock &gt;</a>
+        <a>Apply Unlock</a>
       </p>
     </div>
   </a-result>
