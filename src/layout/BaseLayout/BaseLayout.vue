@@ -126,7 +126,7 @@ export default defineComponent({
       height: 100%;
       overflow: auto;
       overflow-x: hidden;
-      box-shadow: 2px 0 8px 0 rgba(29, 35, 41, .30);
+      box-shadow: 2px 0 8px 0 rgba(29, 35, 41, .20);
 
       ::-webkit-scrollbar {
         width: 6px;
@@ -141,7 +141,6 @@ export default defineComponent({
       ::-webkit-scrollbar-thumb {
         background: rgba(255, 255, 255, 0.2);
         border-radius: 3px;
-        -webkit-box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.05);
       }
 
       &-trigger {
@@ -252,9 +251,6 @@ export default defineComponent({
       position: relative;
       text-align: center;
       padding: 10px 0px;
-
-      &-content {
-      }
     }
   }
 }
