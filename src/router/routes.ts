@@ -33,7 +33,7 @@ const routes: RouteRecordRaw[] = [
               title: '分析页',
               i18nTitle: 'menu.dashboard.analysis'
             },
-            component: () => import(/* webpackChunkName: "analysis" */ '@/views/dashboard/analysis/analysis.vue')
+            component: () => import(/* webpackChunkName: "analysis" */ '@/views/dashboard/analysis/index.vue')
           },
           {
             path: 'monitor',
@@ -42,7 +42,7 @@ const routes: RouteRecordRaw[] = [
               title: '监控页',
               i18nTitle: 'menu.dashboard.monitor'
             },
-            component: () => import(/* webpackChunkName: "monitor" */ '@/views/dashboard/analysis/monitor.vue')
+            component: () => import(/* webpackChunkName: "monitor" */ '@/views/dashboard/monitor/index.vue')
           }, {
             path: 'workplace',
             name: 'workplace',
@@ -50,7 +50,7 @@ const routes: RouteRecordRaw[] = [
               title: '工作台',
               i18nTitle: 'menu.dashboard.workplace'
             },
-            component: () => import(/* webpackChunkName: "workplace" */ '@/views/dashboard/analysis/workplace.vue')
+            component: () => import(/* webpackChunkName: "workplace" */ '@/views/dashboard/workplace/index.vue')
           }
         ]
       },
@@ -122,7 +122,7 @@ const routes: RouteRecordRaw[] = [
                   title: '搜索列表（文章）',
                   i18nTitle: 'menu.list.search-list.articles'
                 },
-                component: () => import(/* webpackChunkName: "articles" */ '@/views/list/search/articles/articles.vue')
+                component: () => import(/* webpackChunkName: "articles" */ '@/views/list/search/articles/index.vue')
               },
               {
                 path: 'projects',
@@ -131,7 +131,7 @@ const routes: RouteRecordRaw[] = [
                   title: '搜索列表（项目）',
                   i18nTitle: 'menu.list.search-list.projects'
                 },
-                component: () => import(/* webpackChunkName: "projects" */ '@/views/dashboard/analysis/analysis.vue')
+                component: () => import(/* webpackChunkName: "projects" */ '@/views/list/search/projects/index.vue')
               },
               {
                 path: 'applications',
@@ -140,7 +140,7 @@ const routes: RouteRecordRaw[] = [
                   title: '搜索列表（应用）',
                   i18nTitle: 'menu.list.search-list.applications'
                 },
-                component: () => import(/* webpackChunkName: "applications" */ '@/views/dashboard/analysis/analysis.vue')
+                component: () => import(/* webpackChunkName: "applications" */ '@/views/list/search/applications/index.vue')
               }
             ]
           },
@@ -151,7 +151,7 @@ const routes: RouteRecordRaw[] = [
               title: '查询表格',
               i18nTitle: 'menu.list.table-list'
             },
-            component: () => import(/* webpackChunkName: "table-list" */ '@/views/dashboard/analysis/monitor.vue')
+            component: () => import(/* webpackChunkName: "table-list" */ '@/views/list/tableList/index.vue')
           },
           {
             path: 'basic-list',
@@ -160,7 +160,7 @@ const routes: RouteRecordRaw[] = [
               title: '标准列表',
               i18nTitle: 'menu.list.basic-list'
             },
-            component: () => import(/* webpackChunkName: "basic-list" */ '@/views/dashboard/analysis/workplace.vue')
+            component: () => import(/* webpackChunkName: "basic-list" */ '@/views/list/basicList/index.vue')
           },
           {
             path: 'card-list',
@@ -169,7 +169,7 @@ const routes: RouteRecordRaw[] = [
               title: '卡片列表',
               i18nTitle: 'menu.list.card-list'
             },
-            component: () => import(/* webpackChunkName: "card-list" */ '@/views/dashboard/analysis/workplace.vue')
+            component: () => import(/* webpackChunkName: "card-list" */ '@/views/list/cardList/index.vue')
           }
         ]
       },
@@ -191,7 +191,7 @@ const routes: RouteRecordRaw[] = [
               title: '基础详情页',
               i18nTitle: 'menu.profile.basic'
             },
-            component: () => import(/* webpackChunkName: "basic" */ '@/views/dashboard/analysis/analysis.vue')
+            component: () => import(/* webpackChunkName: "basic" */ '@/views/profile/basic/index.vue')
           },
           {
             path: 'advanced',
@@ -200,7 +200,7 @@ const routes: RouteRecordRaw[] = [
               title: '高级详情页',
               i18nTitle: 'menu.profile.advanced'
             },
-            component: () => import(/* webpackChunkName: "advanced" */ '@/views/dashboard/analysis/analysis.vue')
+            component: () => import(/* webpackChunkName: "advanced" */ '@/views/profile/advanced/index.vue')
           }
         ]
       },
@@ -222,7 +222,7 @@ const routes: RouteRecordRaw[] = [
               title: '成功页',
               i18nTitle: 'menu.result.success'
             },
-            component: () => import(/* webpackChunkName: "fail" */ '@/views/dashboard/analysis/analysis.vue')
+            component: () => import(/* webpackChunkName: "fail" */ '@/views/result/success/index.vue')
           },
           {
             path: 'fail',
@@ -231,7 +231,7 @@ const routes: RouteRecordRaw[] = [
               title: '失败页',
               i18nTitle: 'menu.result.fail'
             },
-            component: () => import(/* webpackChunkName: "fail" */ '@/views/dashboard/analysis/analysis.vue')
+            component: () => import(/* webpackChunkName: "fail" */ '@/views/result/fail/index.vue')
           }
         ]
       },
@@ -253,7 +253,7 @@ const routes: RouteRecordRaw[] = [
               title: '403',
               i18nTitle: 'menu.exception.not-permission'
             },
-            component: () => import(/* webpackChunkName: "403" */ '@/views/dashboard/analysis/analysis.vue')
+            component: () => import(/* webpackChunkName: "403" */ '@/views/exception/403/index.vue')
           },
           {
             path: '404',
@@ -262,7 +262,7 @@ const routes: RouteRecordRaw[] = [
               title: '404',
               i18nTitle: 'menu.exception.not-find'
             },
-            component: () => import(/* webpackChunkName: "404" */ '@/views/dashboard/analysis/analysis.vue')
+            component: () => import(/* webpackChunkName: "404" */ '@/views/exception/404/index.vue')
           },
           {
             path: '500',
@@ -271,7 +271,7 @@ const routes: RouteRecordRaw[] = [
               title: '500',
               i18nTitle: 'menu.exception.server-error'
             },
-            component: () => import(/* webpackChunkName: "500" */ '@/views/dashboard/analysis/analysis.vue')
+            component: () => import(/* webpackChunkName: "500" */ '@/views/exception/500/index.vue')
           }
         ]
       },
@@ -293,7 +293,7 @@ const routes: RouteRecordRaw[] = [
               title: '个人中心',
               i18nTitle: 'menu.account.center'
             },
-            component: () => import(/* webpackChunkName: "center" */ '@/views/dashboard/analysis/analysis.vue')
+            component: () => import(/* webpackChunkName: "center" */ '@/views/account/center/index.vue')
           },
           {
             path: 'settings',
@@ -302,7 +302,7 @@ const routes: RouteRecordRaw[] = [
               title: '个人设置',
               i18nTitle: 'menu.account.settings'
             },
-            component: () => import(/* webpackChunkName: "settings" */ '@/views/dashboard/analysis/analysis.vue')
+            component: () => import(/* webpackChunkName: "settings" */ '@/views/account/settings/index.vue')
           }
         ]
       },
@@ -324,7 +324,7 @@ const routes: RouteRecordRaw[] = [
               title: '流程编辑器',
               i18nTitle: 'menu.editor.flow'
             },
-            component: () => import(/* webpackChunkName: "flow" */ '@/views/dashboard/analysis/analysis.vue')
+            component: () => import(/* webpackChunkName: "flow" */ '@/views/editor/flow/index.vue')
           },
           {
             path: 'mind',
@@ -333,7 +333,7 @@ const routes: RouteRecordRaw[] = [
               title: '脑图编辑器',
               i18nTitle: 'menu.editor.mind'
             },
-            component: () => import(/* webpackChunkName: "mind" */ '@/views/dashboard/analysis/analysis.vue')
+            component: () => import(/* webpackChunkName: "mind" */ '@/views/editor/mind/index.vue')
           },
           {
             path: 'koni',
@@ -342,7 +342,7 @@ const routes: RouteRecordRaw[] = [
               title: '拓扑编辑器',
               i18nTitle: 'menu.editor.koni'
             },
-            component: () => import(/* webpackChunkName: "koni" */ '@/views/dashboard/analysis/analysis.vue')
+            component: () => import(/* webpackChunkName: "koni" */ '@/views/editor/koni/index.vue')
           }
         ]
       }
