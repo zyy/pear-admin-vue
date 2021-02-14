@@ -1,5 +1,18 @@
 <template>
-  <page-container></page-container>
+  <page-container>
+        <a-card>
+      <a-result
+    status="success"
+    title="Successfully Purchased Cloud Server ECS!"
+    sub-title="Order number: 2017182818828182881 Cloud server configuration takes 1-5 minutes, please wait."
+  >
+    <template #extra>
+      <a-button key="console" type="primary">Go Console</a-button>
+      <a-button key="buy">Buy Again</a-button>
+    </template>
+  </a-result>
+    </a-card>
+  </page-container>
 </template>
 
 <script lang="ts">
@@ -8,7 +21,3 @@ export default defineComponent({
   name: 'index'
 })
 </script>
-
-<style scoped lang="less">
-
-</style>
