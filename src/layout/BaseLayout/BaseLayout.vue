@@ -4,7 +4,7 @@
       <a-layout-sider
         class="app-layout-sider"
         collapsible
-        width="208"
+        width="220"
         :collapsedWidth="48"
         @collapse="handleChangeCollapsed"
       >
@@ -126,7 +126,7 @@ export default defineComponent({
       height: 100%;
       overflow: auto;
       overflow-x: hidden;
-      box-shadow: 2px 0 8px 0 rgba(29, 35, 41, .05);
+      box-shadow: 2px 0 8px 0 rgba(29, 35, 41, .30);
 
       ::-webkit-scrollbar {
         width: 6px;
@@ -136,7 +136,6 @@ export default defineComponent({
       ::-webkit-scrollbar-track {
         background: rgba(255, 255, 255, 0.15);
         border-radius: 3px;
-        -webkit-box-shadow: inset 0 0 5px rgba(37, 37, 37, 0.05);
       }
 
       ::-webkit-scrollbar-thumb {
