@@ -25,5 +25,9 @@ yarn test:unit
 yarn lint
 ```
 
+### 示例截图
+![基础表单](https://jobin_jia.gitee.io/images/v3antdv2ts/basic-form.png)
+![高级表单](https://jobin_jia.gitee.io/images/v3antdv2ts/advanced-form.png)
+
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
