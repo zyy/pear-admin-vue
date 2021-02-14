@@ -108,7 +108,7 @@ export default defineComponent({
       url2: '',
       owner2: undefined,
       approver2: undefined,
-      dateRange2: '',
+      dateRange2: undefined,
       type2: undefined
     })
     const {
@@ -136,6 +136,7 @@ export default defineComponent({
         }],
         dateRange2: [{
           required: true,
+          type: 'date',
           message: '请选择提醒时间'
         }],
         type2: [{
@@ -144,12 +145,6 @@ export default defineComponent({
         }]
       })
     )
-
-    // const onSubmit = async e => {
-    //   e.preventDefault()
-    //   const v = await validate()
-    //   console.log(v)
-    // }
 
     return {
       validateInfos,

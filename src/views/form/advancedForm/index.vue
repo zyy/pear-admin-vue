@@ -42,18 +42,22 @@
             <CloseCircleOutlined/> {{ errors.length }}
           </span>
         </a-popover>
-        <a-button type="primary" :loading="loading" @click="validate">提交</a-button>
+        <a-space>
+          <a-button @click="resetFields">重置</a-button>
+          <a-button type="primary" :loading="loading" @click="validate">提交</a-button>
+        </a-space>
       </div>
     </footer-tool-bar>
   </page-container>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, reactive, toRefs, Ref } from 'vue'
+import { defineComponent, ref, reactive, toRefs, unref, Ref } from 'vue'
 import StoreManage from './components/StoreManage.vue'
 import TaskManage from './components/TaskManage.vue'
 import MemberManage from './components/MemberManage.vue'
 import { CloseCircleOutlined } from '@ant-design/icons-vue'
+import { message } from 'ant-design-vue'
 
 interface ValidateResult {
   status: 'rejected' | 'fulfilled';
@@ -96,8 +100,8 @@ export default defineComponent({
         const promises = [store.value.validate(), task.value.validate()]
         const result: ValidateResult[] = await Promise.allSettled(promises)
         const errors: Array<ValidateError> = result.reduce((errs, item) => {
-          const errorFields = item.reason.errorFields
           if (item.status === 'rejected') {
+            const errorFields = item.reason.errorFields
             const itErr = errorFields.map(it => {
               return {
                 name: it.name,
@@ -109,8 +113,23 @@ export default defineComponent({
           }
           return errs
         }, [] as Array<ValidateError>)
+        if (errors.length === 0) {
+          const fetch = () => {
+            return new Promise((resolve) => {
+              setTimeout(() => {
+                resolve()
+              }, 800)
+            })
+          }
+          try {
+            state.loading = true
+            await fetch()
+            message.success('提交成功。')
+          } finally {
+            state.loading = false
+          }
+        }
         state.errors = errors
-        return
       } catch (e) {
         console.log(e)
       }
@@ -123,10 +142,17 @@ export default defineComponent({
       }
     }
 
+    const resetFields = () => {
+      const refs = [unref(store), unref(task)]
+      refs.forEach(ref => ref.resetFields())
+      state.errors.length = 0
+    }
+
     return {
       ...toRefs(state),
       scrollToErrorFormItem,
       validate,
+      resetFields,
       store,
       task
     }

@@ -158,12 +158,6 @@ export default defineComponent({
       })
     )
 
-    // const onSubmit = async (e) => {
-    //   e.preventDefault()
-    //   const v = await validate()
-    //   console.log(v)
-    // }
-
     return {
       fieldLabels,
       validateInfos,
