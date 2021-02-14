@@ -1,6 +1,6 @@
 module.exports = {
   publicPath: process.env.NODE_ENV === 'production'
-    ? '/vue3-antdv2-admin/'
+    ? '/pear-admin-vue/'
     : '/',
   css: {
     loaderOptions: {
