@@ -90,7 +90,7 @@ const routes: RouteRecordRaw[] = [
               title: '高级表单',
               i18nTitle: 'menu.form.advanced-form'
             },
-            component: () => import(/* webpackChunkName: "advanced-form" */ '@/views/dashboard/analysis/workplace.vue')
+            component: () => import(/* webpackChunkName: "advanced-form" */ '@/views/form/advancedForm/index.vue')
           }
         ]
       },

@@ -26,7 +26,7 @@ interface PageContainerState {
 export default defineComponent({
   name: 'PageContainer',
   props: Object.assign({}, PageHeaderProps, {
-    description: {
+    content: {
       type: String
     }
   }),
@@ -79,7 +79,7 @@ export default defineComponent({
       const pageDefaultSlot = Object.keys(ctx.slots).includes('default') ? ctx.slots : null
       const slots = Object.keys(ctx.slots).reduce((slots, name) => {
         switch (name) {
-          case 'description':
+          case 'content':
             // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
             // @ts-ignore
             slots.default = ctx.slots[name]
@@ -104,8 +104,8 @@ export default defineComponent({
             class="app-page-container-head"
             v-slots={slots}
           >
-            {!Object.keys(ctx.slots).includes('description') && props.description ? (
-              <div>{props.description}</div>
+            {!Object.keys(ctx.slots).includes('content') && props.content ? (
+              <div>{props.content}</div>
             ) : null}
           </a-page-header>
           <div class="app-page-container-content">

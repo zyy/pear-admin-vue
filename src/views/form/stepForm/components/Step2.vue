@@ -11,8 +11,8 @@
     <a-descriptions
       :column="1"
     >
-      <a-descriptions-item label="付款账户">ant-design@alipay.com</a-descriptions-item>
-      <a-descriptions-item label="收款账户">ant-design@alipay.com</a-descriptions-item>
+      <a-descriptions-item label="付款账户">pearadmin.com</a-descriptions-item>
+      <a-descriptions-item label="收款账户">test@example.com</a-descriptions-item>
       <a-descriptions-item label="收款人姓名">落小梅</a-descriptions-item>
       <a-descriptions-item label="转账金额">￥ 5,000.00</a-descriptions-item>
     </a-descriptions>
