@@ -4,6 +4,9 @@
     :style="{width: !collapsed ? 'calc(100% - 208px)': 'calc(100% - 48px)'}"
   >
     <div class="app-layout-header-content">
+      <div class="app-layout-header-content-left">
+        <LeftContent/>
+      </div>
       <div style="flex: 1 1 0%;"></div>
       <div class="app-layout-header-content-right">
         <RightContent/>
@@ -15,6 +18,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import RightContent from './components/RightContent.vue'
+import LeftContent from './components/LeftContent.vue'
 
 export default defineComponent({
   name: 'AppHeader',
@@ -24,7 +28,8 @@ export default defineComponent({
     }
   },
   components: {
-    RightContent
+    RightContent,
+    LeftContent
   }
 })
 </script>
@@ -47,11 +52,16 @@ export default defineComponent({
     padding: 0 16px;
     background: #fff;
     box-shadow: 0 1px 4px rgba(0, 21, 41, .08);
-
     &-right {
       display: flex;
       float: right;
       margin-left: auto;
+      overflow: hidden;
+      height: 100%;
+    }
+    &-left {
+      display: flex;
+      float: left;
       overflow: hidden;
       height: 100%;
     }
