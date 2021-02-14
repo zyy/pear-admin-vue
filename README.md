@@ -1,5 +1,3 @@
-# v3-ts-admin
-
 <div align="center">
 <br/>
 
