@@ -1,1 +1,2 @@
 import './loadComponent'
+import './loadAntdComponent'

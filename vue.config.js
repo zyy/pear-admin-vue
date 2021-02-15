@@ -1,3 +1,10 @@
+/* eslint-disable */
+const path = require('path')
+const fs = require('fs')
+const lessToJs = require('less-vars-to-js')
+
+const themeVariables = lessToJs(fs.readFileSync(path.join(__dirname, './src/themes/pear-theme-vars.less'), 'utf8'))
+console.log(themeVariables)
 module.exports = {
   publicPath: process.env.NODE_ENV === 'production'
     ? '/pear-admin-vue/'
@@ -5,10 +12,7 @@ module.exports = {
   css: {
     loaderOptions: {
       less: {
-        modifyVars: {
-          'menu-collapsed-width': '48px',
-          'layout-header-height': '48px'
-        },
+        modifyVars: themeVariables,
         javascriptEnabled: true
       }
     },
