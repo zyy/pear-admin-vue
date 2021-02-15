@@ -4,7 +4,7 @@ const fs = require('fs')
 const lessToJs = require('less-vars-to-js')
 
 const themeVariables = lessToJs(fs.readFileSync(path.join(__dirname, './src/themes/pear-theme-vars.less'), 'utf8'))
-console.log(themeVariables)
+
 module.exports = {
   publicPath: process.env.NODE_ENV === 'production'
     ? '/pear-admin-vue/'
