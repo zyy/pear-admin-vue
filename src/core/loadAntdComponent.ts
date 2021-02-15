@@ -1,4 +1,6 @@
 import app from '@/app'
+import { isProduction } from '@/utils/utils.ts'
+
 import {
   ConfigProvider,
   Layout,
@@ -86,5 +88,5 @@ app.use(Result)
 app.use(Statistic)
 app.use(Descriptions)
 app.use(Space)
-// app.use(message)
-// app.use(notification)
+
+!isProduction && console.info('%cPear Info: 已按需加载ant-design-vue组件!', 'background: #36b368; color: white;font-size: 15px;')
