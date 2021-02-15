@@ -4,7 +4,7 @@
 <br/>
 
   <h1 align="center">
-    Pear Admin Ant
+    Pear Admin Vue
   </h1>
   <h4 align="center">
     开 箱 即 用 的 Vue 3.0 前 端 开 发 框 架
@@ -13,6 +13,18 @@
 <a href="https://pear-admin.gitee.io/pear-admin-vue" target="_blank">预 览</a>  |   [官 网](http://www.pearadmin.com/)   |   [群聊](https://jq.qq.com/?_wv=1027&k=5OdSmve)   |   [社区](http://forum.pearadmin.com/)
 
 </div>
+
+<p align="center">
+    <a href="#">
+        <img src="https://img.shields.io/badge/Pear Admin Vue-0.0.1+-green.svg" alt="Pear Admin Layui Version">
+    </a>
+    <a href="#">
+        <img src="https://img.shields.io/badge/Ant Design Vue-2.0.0+-green.svg" alt="Jquery Version">
+    </a>
+      <a href="#">
+        <img src="https://img.shields.io/badge/Typescript-5.0.0+-green.svg" alt="Layui Version">
+    </a>
+</p>
 
 ## Project setup
 ```

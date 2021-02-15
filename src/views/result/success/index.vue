@@ -1,5 +1,5 @@
 <template>
-  <page-container>
+  <page-container content="高级表单常见于一次性输入和提交大批量数据的场景。">
         <a-card>
       <a-result
     status="success"
