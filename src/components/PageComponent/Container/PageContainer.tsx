@@ -15,7 +15,7 @@ interface BreadRoute {
 
 interface Breadcrumb {
   routes: BreadRoute [];
-  itemRender: Function;
+  itemRender: Function | undefined;
 }
 
 interface PageContainerState {
@@ -37,9 +37,7 @@ export default defineComponent({
     const pageContainerState = reactive({
       breadcrumb: {
         routes: [],
-        itemRender: () => {
-          return undefined
-        }
+        itemRender: undefined
       },
       title: ''
     } as PageContainerState)
