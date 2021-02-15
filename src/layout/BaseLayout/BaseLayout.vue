@@ -4,7 +4,7 @@
       <a-layout-sider
         class="app-layout-sider"
         collapsible
-        width="220"
+        width="208"
         :collapsedWidth="48"
         @collapse="handleChangeCollapsed"
       >
