@@ -1,4 +1,4 @@
-# v3-ts-admin
+# Pear Admin Vue
 
 <div align="center">
 <br/>

@@ -30,7 +30,7 @@
         />
       </a-layout-sider>
       <div :class="[!collapsed ? 'app-layout-sider-hidden' : 'app-layout-sider-hidden-collapsed']"></div>
-      <a-layout style="position: relative;" >
+      <a-layout style="position: relative;">
         <header class="app-layout-header-hidden"></header>
         <AppHeader :collapsed="collapsed"/>
         <a-layout-content
@@ -42,7 +42,7 @@
           class="app-layout-footer"
         >
           <footer class="app-layout-footer-content">
-            ©2018 Created by Jobin Jia
+            ©{{ new Date().getFullYear() }} Created by Pear Admin
           </footer>
         </a-layout-footer>
       </a-layout>
@@ -240,6 +240,7 @@ export default defineComponent({
       background: transparent;
       flex: 0 0 auto;
     }
+
     &-content {
       position: relative;
       //margin: 24px;
