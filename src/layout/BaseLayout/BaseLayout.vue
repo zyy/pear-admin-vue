@@ -36,7 +36,7 @@
         <a-layout-content
           class="app-layout-content"
         >
-          <router-view/>
+          <AppContent></AppContent>
         </a-layout-content>
         <a-layout-footer
           class="app-layout-footer"
@@ -56,6 +56,7 @@ import routes from '@/router/routes'
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons-vue'
 import AppMenu from '@/components/Application/AppMenu/AppMenu.vue'
 import AppHeader from '@/components/Application/AppHeader/AppHeader.vue'
+import AppContent from '@/components/Application/AppContent/AppContent.vue'
 import { useRoute } from 'vue-router'
 
 export default defineComponent({
@@ -63,6 +64,7 @@ export default defineComponent({
   components: {
     AppMenu,
     AppHeader,
+    AppContent,
     MenuFoldOutlined,
     MenuUnfoldOutlined
   },
