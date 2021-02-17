@@ -33,7 +33,9 @@ export default defineComponent({
   setup () {
     const customColor = ref('')
     const handleClick = (color: string) => {
-      themeColor.changeColor(color)
+      themeColor.changeColor(color).then(r => {
+        console.log(r)
+      })
     }
     return {
       customColor,

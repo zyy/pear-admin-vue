@@ -22,9 +22,6 @@
             <h1 v-if="!collapsed">Pear Admin</h1>
           </a>
         </div>
-        <!-- v-model:openKeys="openKeys"
-          v-model:selectedKeys="selectedKeys"
-          :menu-list="menuList" -->
         <app-menu
           class="app-layout-sider-menu"
         />

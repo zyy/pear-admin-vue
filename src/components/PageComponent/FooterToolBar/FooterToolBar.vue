@@ -36,7 +36,6 @@ export default defineComponent({
 </script>
 
 <style scoped lang="less">
-@import '~ant-design-vue/es/style/themes/default.less';
 .app-footer-tool-bar {
   position: fixed;
   right: 0;
@@ -47,9 +46,9 @@ export default defineComponent({
   width: 100%;
   padding: 0 24px;
   line-height: 44px;
-  background: @component-background;
-  border-top: 1px solid @border-color-split;
-  box-shadow: @shadow-1-up;
+  background: #fff;
+  border-top: 1px solid hsv(0, 0, 94%);
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.15);
   transition: width 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 
   &-left {
