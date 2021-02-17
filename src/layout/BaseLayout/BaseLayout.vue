@@ -146,7 +146,7 @@ export default defineComponent({
       &-trigger {
         padding-left: 16px;
         text-align: left;
-        background: #001529;
+        //background: #001529;
         width: 100%;
       }
 

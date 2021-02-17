@@ -4,12 +4,18 @@
   </a-config-provider>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, onMounted } from 'vue'
 import locale from 'ant-design-vue/lib/locale/zh_CN'
+import themeColor from '@/themes/color.js'
 
 export default defineComponent({
   name: 'App',
   setup () {
+    onMounted(() => {
+      themeColor.changeColor('#36b368').finally(t => {
+        console.log(t)
+      })
+    })
     return {
       locale
     }
