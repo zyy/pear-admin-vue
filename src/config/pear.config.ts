@@ -6,7 +6,7 @@ interface PearConfig {
 
 const pearConfig: PearConfig = {
   themeColor: '#36b368',
-  routeMode: 'history',
+  routeMode: 'hash',
   routeAnimation: 'fade-top'
 }
 
