@@ -1,27 +1,25 @@
 /* eslint-disable */
 import client from 'webpack-theme-color-replacer/client'
-const antdColor = require('@ant-design/colors/dist/index')
+import { generate } from '@ant-design/colors'
 
 export default {
-  primaryColor: '#1890ff',
   getAntdSerials (color) {
     // 淡化（即less的tint）
     const lightens = new Array(9).fill().map((t, i) => {
       return client.varyColor.lighten(color, i / 10)
     })
     // colorPalette变换得到颜色值
-    const colorPalettes = antdColor.generate(color)
-    return lightens.concat(colorPalettes)
+    const colorPalettes = generate(color)
+    const rgb = client.varyColor.toNum3(color.replace('#', '')).join(',')
+    return lightens.concat(colorPalettes).concat(rgb)
   },
   changeColor (newColor) {
-    var lastColor = this.lastColor || this.primaryColor
     var options = {
-      cssUrl: '/css/theme-colors.css',
-      oldColors: this.getAntdSerials(lastColor), // current colors array. The same as `matchColors`
-      newColors: this.getAntdSerials(newColor) // new colors array, one-to-one corresponde with `oldColors`
+      newColors: this.getAntdSerials(newColor), // new colors array, one-to-one corresponde with `matchColors`
+      changeUrl (cssUrl) {
+        return `/${cssUrl}` // while router is not `hash` mode, it needs absolute path
+      }
     }
-    var promise = client.changer.changeColor(options, Promise)
-    this.lastColor = lastColor
-    return promise
+    return client.changer.changeColor(options, Promise)
   }
 }
