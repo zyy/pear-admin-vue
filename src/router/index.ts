@@ -1,15 +1,14 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter } from 'vue-router'
 import routes from './routes'
 import store from '@/store'
+import { createApplicationRouteMode } from './_utils'
 
 const router = createRouter({
-  // history: createWebHistory(process.env.BASE_URL),
-  history: createWebHashHistory(process.env.BASE_URL),
+  history: createApplicationRouteMode(),
   routes
 })
 
 router.beforeEach(async (from, to, next) => {
-  console.log(store)
   await store.dispatch('app/toggleRouterLoading', true)
   next()
 })

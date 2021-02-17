@@ -22,11 +22,11 @@
             <h1 v-if="!collapsed">Pear Admin</h1>
           </a>
         </div>
+        <!-- v-model:openKeys="openKeys"
+          v-model:selectedKeys="selectedKeys"
+          :menu-list="menuList" -->
         <app-menu
           class="app-layout-sider-menu"
-          v-model:openKeys="openKeys"
-          v-model:selectedKeys="selectedKeys"
-          :menu-list="menuList"
         />
       </a-layout-sider>
       <div :class="[!collapsed ? 'app-layout-sider-hidden' : 'app-layout-sider-hidden-collapsed']"></div>
@@ -51,13 +51,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, toRefs, watch } from 'vue'
-import routes from '@/router/routes'
+import { computed, defineComponent, reactive, toRefs } from 'vue'
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons-vue'
 import AppMenu from '@/components/Application/AppMenu/AppMenu.vue'
 import AppHeader from '@/components/Application/AppHeader/AppHeader.vue'
 import AppContent from '@/components/Application/AppContent/AppContent.vue'
-import { useRoute } from 'vue-router'
+import { useStore } from 'vuex'
 
 export default defineComponent({
   name: 'BaseLayout',
@@ -69,41 +68,18 @@ export default defineComponent({
     MenuUnfoldOutlined
   },
   setup () {
+    const store = useStore()
     const menuState = reactive({
-      collapsed: false,
-      openKeys: [],
-      selectedKeys: [],
-      preOpenKeys: []
+      collapsed: computed(() => store.state.layout.collapsed)
     })
-    const route = useRoute()
 
     const handleChangeCollapsed = () => {
-      menuState.openKeys = !menuState.collapsed ? [] : menuState.preOpenKeys
-      menuState.collapsed = !menuState.collapsed
+      store.dispatch('layout/toggleCollapsed')
     }
-
-    watch(
-      () => menuState.openKeys,
-      (val, oldVal) => {
-        menuState.preOpenKeys = oldVal
-      }
-    )
-
-    watch(() => route.name, () => {
-      const matched = route.matched
-      // todo: types
-      // eslint-disable-next-line
-      const openKeys: any = matched.map(it => it.name)
-      menuState.openKeys = openKeys
-      menuState.selectedKeys = openKeys
-    }, { immediate: true })
-
-    const menuList = routes.find(it => it.path === '/')?.children
 
     return {
       ...toRefs(menuState),
-      handleChangeCollapsed,
-      menuList
+      handleChangeCollapsed
     }
   }
 })

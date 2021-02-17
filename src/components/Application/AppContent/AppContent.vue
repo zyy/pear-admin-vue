@@ -1,7 +1,8 @@
 <template>
   <loading v-if="loading"></loading>
   <router-view v-else v-slot="{ Component }">
-    <transition name="fade-top">
+    <!-- todo: 添加动画 -->
+    <transition>
       <component :is="Component"></component>
     </transition>
   </router-view>
@@ -16,7 +17,6 @@ export default defineComponent({
   setup () {
     const store = useStore()
     const loading = computed(() => store.state.app.routerLoading)
-    console.log(loading)
     return {
       loading
     }

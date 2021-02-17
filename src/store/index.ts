@@ -1,4 +1,4 @@
-import { createStore, createLogger } from 'vuex'
+import { createStore } from 'vuex'
 import modules from '@/store/stores'
 import { isProduction } from '@/utils/utils'
 
@@ -10,6 +10,6 @@ export default createStore({
   },
   actions: {
   },
-  strict: isProduction,
-  plugins: !isProduction ? [createLogger()] : []
+  strict: isProduction
+  // plugins: !isProduction ? [createLogger()] : []
 })
