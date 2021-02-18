@@ -5,8 +5,9 @@
 </template>
 <script lang="ts">
 import { defineComponent, onMounted } from 'vue'
-import locale from 'ant-design-vue/lib/locale/zh_CN'
+import { useI18n } from 'vue-i18n'
 import themeColor from '@/themes/colorChange.ts'
+import config from '@/config/pear.config'
 
 export default defineComponent({
   name: 'App',
@@ -14,6 +15,8 @@ export default defineComponent({
     onMounted(() => {
       themeColor.changeColor('#36b368')
     })
+    const { getLocaleMessage } = useI18n({ useScope: 'global' })
+    const locale = getLocaleMessage(config.defaultLanguage)
     return {
       locale
     }

@@ -3,14 +3,13 @@ import { PageHeaderProps } from 'ant-design-vue/es/page-header'
 import { getAntdComponentProps } from '@/components/_utils'
 import './index.less'
 import { useRoute } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 
 interface BreadRoute {
   path: string;
   breadcrumbName: string;
-  children?: Array<{
-    path: string;
-    breadcrumbName: string;
-  }>;
+  meta: any;
+  children?: Array<BreadRoute>;
 }
 
 interface Breadcrumb {
@@ -30,10 +29,9 @@ export default defineComponent({
       type: String
     }
   }),
-  setup: function (props, ctx) {
+  setup (props, ctx) {
     const defaultPageHeaderProps = getAntdComponentProps(PageHeaderProps, props)
     const route = useRoute()
-
     const pageContainerState = reactive({
       breadcrumb: {
         routes: [],
@@ -42,6 +40,8 @@ export default defineComponent({
       title: ''
     } as PageContainerState)
 
+    const { t } = useI18n()
+
     const handleRouteChange = () => {
       // 设置面包屑
       pageContainerState.breadcrumb = {
@@ -49,7 +49,8 @@ export default defineComponent({
           return {
             name: it.name,
             path: it.path,
-            breadcrumbName: it.path === '/' ? '首页' : it.meta?.title// i18nTitle
+            meta: it.meta,
+            breadcrumbName: it.path === '/' ? t('menu.home') : t(it.meta?.i18nTitle) // it.meta?.title// i18nTitle
           }
         }) as BreadRoute[],
         itemRender: ({

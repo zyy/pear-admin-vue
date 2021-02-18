@@ -14,7 +14,8 @@
           <a-menu-item :key="route.name">
             <router-link :to="{name: route.name}">
               <AppIcon :icon-name="route?.meta?.icon"></AppIcon>
-              <span>{{ route.meta.title }}</span>
+<!--              <span>{{ route.meta.title }}</span>-->
+              <span>{{ t(route.meta.i18nTitle) }}</span>
             </router-link>
           </a-menu-item>
         </template>
@@ -32,6 +33,7 @@ import AppSubMenu from '@/components/Application/AppSubMenu/AppSubMenu.vue'
 import AppIcon from '@/components/Application/AppIcon/AppIcon.tsx'
 import { useRoute } from 'vue-router'
 import { useStore } from 'vuex'
+import { useI18n } from 'vue-i18n'
 
 export default defineComponent({
   name: 'AppMenu',
@@ -43,6 +45,7 @@ export default defineComponent({
   setup () {
     const store = useStore()
     const route = useRoute()
+    const { t } = useI18n()
     const menuState = reactive({
       collapsed: computed(() => store.state.layout.collapsed),
       openKeys: computed(() => store.state.layout.openKeys),
@@ -88,6 +91,7 @@ export default defineComponent({
     )
 
     return {
+      t,
       ...toRefs(menuState),
       handleOpen,
       handleSelect
