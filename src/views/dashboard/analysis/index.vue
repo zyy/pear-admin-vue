@@ -26,7 +26,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import themeColor from '@/themes/color.js'
+import themeColor from '@/themes/colorChange'
 
 export default defineComponent({
   name: 'index',

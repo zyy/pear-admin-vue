@@ -13,8 +13,10 @@ const getAntdSerials = (color) => {
   return lightens.concat(colorPalettes).concat(rgb)
 }
 
+const isPreview = process.env.VUE_APP_PEAR_VIEW === 'true'
+
 const themePluginOption = {
-  fileName: 'css/theme-colors-[contenthash:8].css',
+  fileName: isPreview ? 'pear-admin-vue/css/theme-colors-[contenthash:8].css' : 'css/theme-colors-[contenthash:8].css',
   matchColors: getAntdSerials('#36b368'), // 主色系列
   // 改变样式选择器，解决样式覆盖问题
   changeSelector (selector) {

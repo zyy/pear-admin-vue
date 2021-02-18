@@ -7,7 +7,7 @@ const lessToJs = require('less-vars-to-js')
 
 const themeVariables = lessToJs(fs.readFileSync(path.join(__dirname, './src/themes/pear-theme-vars.less'), 'utf8'))
 
-module.exports = {
+const config = {
   publicPath: process.env.NODE_ENV === 'production'
     ? '/pear-admin-vue/'
     : '/',
@@ -21,9 +21,7 @@ module.exports = {
     requireModuleExtension: true
   },
   configureWebpack: {
-    plugins: [
-      createThemeColorReplacerPlugin()
-    ]
+    plugins: []
   },
   devServer: {
     open: true,
@@ -32,3 +30,11 @@ module.exports = {
   },
   parallel: require('os').cpus().length > 1 // 构建时开启多进程处理babel编译
 }
+
+if (process.env.VUE_APP_PEAR_VIEW === 'true') {
+  config.configureWebpack.plugins.push(
+    createThemeColorReplacerPlugin()
+  )
+}
+
+module.exports = config
