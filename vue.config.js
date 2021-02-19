@@ -9,7 +9,7 @@ const themeVariables = lessToJs(fs.readFileSync(path.join(__dirname, './src/them
 
 const config = {
   publicPath: process.env.NODE_ENV === 'production'
-    ? '/pear-admin-vue/'
+    ? '/'
     : '/',
   css: {
     loaderOptions: {
