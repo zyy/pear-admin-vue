@@ -35,6 +35,7 @@
         >
           <AppContent></AppContent>
         </a-layout-content>
+        <SettingDrawer />
         <a-layout-footer
           class="app-layout-footer"
         >
@@ -54,6 +55,7 @@ import AppMenu from '@/components/Application/AppMenu/AppMenu.vue'
 import AppHeader from '@/components/Application/AppHeader/AppHeader.vue'
 import AppContent from '@/components/Application/AppContent/AppContent.vue'
 import { useStore } from 'vuex'
+import SettingDrawer from '@/components/Application/SettingDrawer/SettingDrawer.vue'
 
 export default defineComponent({
   name: 'BaseLayout',
@@ -62,7 +64,8 @@ export default defineComponent({
     AppHeader,
     AppContent,
     MenuFoldOutlined,
-    MenuUnfoldOutlined
+    MenuUnfoldOutlined,
+    SettingDrawer
   },
   setup () {
     const store = useStore()
