@@ -40,7 +40,15 @@ export default defineComponent({
       title: ''
     } as PageContainerState)
 
-    const { t } = useI18n()
+    const i18n = useI18n()
+    const { t } = i18n
+    watch(() => i18n, () => {
+      pageContainerState.breadcrumb.routes.forEach(it => {
+        it.breadcrumbName = it.path === '/' ? t('menu.home') : t(it.meta?.i18nTitle)
+      })
+      const title = route?.meta?.i18nTitle
+      pageContainerState.title = t(title)
+    }, { deep: true })
 
     const handleRouteChange = () => {
       // 设置面包屑
@@ -70,8 +78,8 @@ export default defineComponent({
         }
       }
       // 设置标题title
-      const title = route?.meta?.title
-      pageContainerState.title = title
+      const title = route?.meta?.i18nTitle
+      pageContainerState.title = t(title)
     }
     watch(() => route.fullPath, handleRouteChange, { immediate: true })
     return () => {
