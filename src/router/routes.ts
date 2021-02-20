@@ -345,8 +345,20 @@ const routes: RouteRecordRaw[] = [
             component: () => import(/* webpackChunkName: "koni" */ '@/views/editor/koni/index.vue')
           }
         ]
+      },
+      {
+        path: '/:data(.*)',
+        meta: {
+          hidden: true
+        },
+        redirect: { name: 'NotFound' }
       }
     ]
+  },
+  {
+    path: '/404',
+    name: 'NotFound',
+    component: () => import('@/views/exception/404/index.vue')
   }
 ]
 
