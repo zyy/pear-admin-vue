@@ -116,7 +116,7 @@ export default defineComponent({
             ) : null}
           </a-page-header>
           <div class="app-page-container-content">
-            {pageDefaultSlot && pageDefaultSlot.default?.()}
+            { pageDefaultSlot && pageDefaultSlot.default?.() }
           </div>
         </div>
       )

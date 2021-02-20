@@ -4,10 +4,11 @@
     :style="{width: !collapsed ? 'calc(100% - 208px)': 'calc(100% - 48px)'}"
   >
     <div class="app-layout-header-content">
-      <div class="app-layout-header-content-left">
+<!--      <div class="app-layout-header-content-left">-->
+<!--      </div>-->
+      <div style="flex: 1 1 0%;height: 100%;">
         <LeftContent/>
       </div>
-      <div style="flex: 1 1 0%;"></div>
       <div class="app-layout-header-content-right">
         <RightContent/>
       </div>
