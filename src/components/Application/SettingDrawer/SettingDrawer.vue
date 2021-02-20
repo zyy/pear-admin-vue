@@ -16,6 +16,7 @@
             :key="key"
             :style="{background: color.color}"
             @click="changePrimaryColor(color.color)"
+            :title="color.colorName"
           >
             <CheckOutlined v-if="primaryColor === color.color" style="color: #ffffff;"/>
           </div>
@@ -32,12 +33,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, Ref, ref } from 'vue'
+import { defineComponent, Ref, ref, computed, unref } from 'vue'
 import { SettingOutlined, CloseOutlined, CheckOutlined } from '@ant-design/icons-vue'
 import { presetPrimaryColors } from '@ant-design/colors'
 import themeColor from '@/themes/colorChange'
 import { message } from 'ant-design-vue'
 import config from '@/config/pear.config'
+import { useStore } from 'vuex'
 
 export default defineComponent({
   name: 'SettingDrawer',
@@ -47,8 +49,9 @@ export default defineComponent({
     CheckOutlined
   },
   setup () {
+    const store = useStore()
     const visible: Ref = ref<boolean>(false)
-    const primaryColor: Ref = ref<string>(config.themeColor)
+    const primaryColor: Ref = ref<string>(unref(computed(() => store.getters['app/primaryColor'])))
 
     const themeColors = Object.keys(presetPrimaryColors).map(it => {
       return {
@@ -58,7 +61,7 @@ export default defineComponent({
     })
     themeColors.unshift({
       colorName: 'pear-admin',
-      color: config.themeColor
+      color: config.primaryColor
     })
 
     const toggle = () => {
@@ -70,6 +73,7 @@ export default defineComponent({
       themeColor.changeColor(color).then(() => {
         togglePrimary()
         primaryColor.value = color
+        store.dispatch('app/changePrimaryColor', color)
       })
     }
 
@@ -108,6 +112,7 @@ export default defineComponent({
         text-align: center;
         line-height: 20px;
         margin: 8px 8px 0 0;
+        cursor: pointer;
       }
     }
   }

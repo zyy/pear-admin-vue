@@ -49,13 +49,14 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, reactive, toRefs } from 'vue'
+import { computed, defineComponent, reactive, toRefs, onMounted } from 'vue'
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons-vue'
 import AppMenu from '@/components/Application/AppMenu/AppMenu.vue'
 import AppHeader from '@/components/Application/AppHeader/AppHeader.vue'
 import AppContent from '@/components/Application/AppContent/AppContent.vue'
 import { useStore } from 'vuex'
 import SettingDrawer from '@/components/Application/SettingDrawer/SettingDrawer.vue'
+import themeColor from '@/themes/colorChange.ts'
 
 export default defineComponent({
   name: 'BaseLayout',
@@ -76,6 +77,11 @@ export default defineComponent({
     const handleChangeCollapsed = () => {
       store.dispatch('layout/toggleCollapsed')
     }
+    const primaryColor = computed(() => store.getters['app/primaryColor'])
+
+    onMounted(async () => {
+      await themeColor.changeColor(primaryColor.value)
+    })
 
     return {
       ...toRefs(menuState),
