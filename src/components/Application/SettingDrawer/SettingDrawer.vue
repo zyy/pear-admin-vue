@@ -5,7 +5,6 @@
       placement="right"
       v-model:visible="visible"
       :closable="false"
-      style="position: absolute"
     >
       <div class="app-setting-drawer-content">
         <h3>主题色</h3>
