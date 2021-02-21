@@ -161,7 +161,7 @@ export default defineComponent({
 </script>
 
 <style scoped lang="less">
-::v-deep .ant-popover-inner-content {
+::v-deep(.ant-popover-inner-content) {
   min-width: 256px;
   max-height: 290px;
   padding: 0;
