@@ -1,10 +1,8 @@
 import app from '@/app'
-import zhCN from 'ant-design-vue/lib/locale/zh_CN'
-import config from '@/config/pear.config'
-import zhModules from './lang/zh-CN'
-import { setupI18n } from './i18n'
+import { loadLocaleMessages, setupI18n } from './i18n'
+import store from '@/store'
 
-const DEFAULT_LANG = config.defaultLanguage
+const DEFAULT_LANG = store.getters['app/language']
 
 const i18n = setupI18n({
   globalInjection: true,
@@ -12,13 +10,12 @@ const i18n = setupI18n({
   locale: DEFAULT_LANG,
   fallbackLocale: DEFAULT_LANG,
   messages: {
-    'zh-CN': {
-      ...zhCN,
-      ...zhModules
-    }
   }
 })
 
+loadLocaleMessages(i18n, DEFAULT_LANG).then(() => {
+  console.log('init i18n')
+})
 app.use(i18n)
 
 export { i18n }

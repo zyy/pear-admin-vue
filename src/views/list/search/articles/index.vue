@@ -1,6 +1,5 @@
 <template>
   <page-container
-    title="搜索列表（文章）"
   >
     <template #description>
       <div class="articles-search-bar">

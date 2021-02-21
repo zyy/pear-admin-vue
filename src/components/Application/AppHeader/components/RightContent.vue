@@ -1,6 +1,6 @@
 <template>
-  <NoticeTab />
-  <Avatar />
+  <NoticeTab/>
+  <Avatar/>
   <Lang/>
 </template>
 

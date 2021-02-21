@@ -25,16 +25,20 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { computed, defineComponent, ref, unref } from 'vue'
 import { loadLocaleMessages } from '@/locales/i18n'
 import { i18n } from '@/locales'
+import { useStore } from 'vuex'
 export default defineComponent({
   name: 'Lang',
   setup () {
-    const selectedKeys = ref(['zh-CN'])
+    const store = useStore()
+    const defaultLang = computed(() => store.getters['app/language'])
+    const selectedKeys = ref([unref(defaultLang)])
     const toggleLang = async ({ key }) => {
       selectedKeys.value = [key]
       await loadLocaleMessages(i18n, key)
+      await store.dispatch('app/setLanguage', key)
     }
     return {
       selectedKeys,

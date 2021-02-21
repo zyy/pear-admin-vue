@@ -18,8 +18,9 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import RightContent from './components/RightContent.vue'
+// import RightContent from './components/RightContent.vue'
 import LeftContent from './components/LeftContent.vue'
+import loadAsyncComponent from '@/core/asyncComponent'
 
 export default defineComponent({
   name: 'AppHeader',
@@ -29,7 +30,7 @@ export default defineComponent({
     }
   },
   components: {
-    RightContent,
+    RightContent: loadAsyncComponent(() => import('./components/RightContent.vue')),
     LeftContent
   }
 })

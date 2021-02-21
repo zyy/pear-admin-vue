@@ -1,5 +1,17 @@
-import { defineAsyncComponent, ComponentPublicInstance } from 'vue'
-import Loading from '@/components/PageComponent/Loading/Loading.vue'
+import { defineAsyncComponent, ComponentPublicInstance, defineComponent } from 'vue'
+
+const loading = defineComponent({
+  name: 'componentLoading',
+  setup () {
+    return () => {
+      return (
+        <div style="width: 100%;height: 100%">
+          <a-spin></a-spin>
+        </div>
+      )
+    }
+  }
+})
 
 /**
  * 异步组件加载
@@ -8,9 +20,9 @@ import Loading from '@/components/PageComponent/Loading/Loading.vue'
 function loadAsyncComponent (loader): ComponentPublicInstance {
   const asyncComponent: ComponentPublicInstance = defineAsyncComponent({
     loader: loader,
-    loadingComponent: Loading,
-    errorComponent: Loading,
-    delay: 200,
+    loadingComponent: loading,
+    errorComponent: loading,
+    delay: 400,
     // 如果提供了 timeout ，并且加载组件的时间超过了设定值，将显示错误组件
     // 默认值：Infinity（即永不超时，单位 ms）
     // timeout: 3000,
