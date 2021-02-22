@@ -1,5 +1,6 @@
 <template>
   <page-container>
+    <ValidateMobile></ValidateMobile>
   </page-container>
 </template>
 
