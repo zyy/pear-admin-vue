@@ -10,7 +10,7 @@
     开 箱 即 用 的 Vue 3.0 前 端 开 发 框 架
   </h4> 
 
-<a href="https://pear-admin.gitee.io/pear-admin-vue" target="_blank">预 览</a>  |   [官 网](http://www.pearadmin.com/)   |   [群聊](https://jq.qq.com/?_wv=1027&k=5OdSmve)   |   [社区](http://forum.pearadmin.com/)
+<a href="http://vue.pearadmin.com" target="_blank">预 览</a>  |   [官 网](http://www.pearadmin.com/)   |   [群聊](https://jq.qq.com/?_wv=1027&k=5OdSmve)   |   [社区](http://forum.pearadmin.com/)
 
 </div>
 

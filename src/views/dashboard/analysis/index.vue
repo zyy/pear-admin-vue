@@ -1,9 +1,12 @@
 <template>
-  <page-container></page-container>
+  <page-container>
+    <ValidateMobile></ValidateMobile>
+  </page-container>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+
 export default defineComponent({
   name: 'index'
 })

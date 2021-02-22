@@ -3,19 +3,18 @@ import { PageHeaderProps } from 'ant-design-vue/es/page-header'
 import { getAntdComponentProps } from '@/components/_utils'
 import './index.less'
 import { useRoute } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 
 interface BreadRoute {
   path: string;
   breadcrumbName: string;
-  children?: Array<{
-    path: string;
-    breadcrumbName: string;
-  }>;
+  meta: any;
+  children?: Array<BreadRoute>;
 }
 
 interface Breadcrumb {
   routes: BreadRoute [];
-  itemRender: Function;
+  itemRender: Function | undefined;
 }
 
 interface PageContainerState {
@@ -30,19 +29,26 @@ export default defineComponent({
       type: String
     }
   }),
-  setup: function (props, ctx) {
+  setup (props, ctx) {
     const defaultPageHeaderProps = getAntdComponentProps(PageHeaderProps, props)
     const route = useRoute()
-
     const pageContainerState = reactive({
       breadcrumb: {
         routes: [],
-        itemRender: () => {
-          return undefined
-        }
+        itemRender: undefined
       },
       title: ''
     } as PageContainerState)
+
+    const i18n = useI18n()
+    const { t } = i18n
+    watch(() => i18n, () => {
+      pageContainerState.breadcrumb.routes.forEach(it => {
+        it.breadcrumbName = it.path === '/' ? t('menu.home') : t(it.meta?.i18nTitle)
+      })
+      const title = route?.meta?.i18nTitle
+      pageContainerState.title = t(title)
+    }, { deep: true })
 
     const handleRouteChange = () => {
       // 设置面包屑
@@ -51,7 +57,8 @@ export default defineComponent({
           return {
             name: it.name,
             path: it.path,
-            breadcrumbName: it.path === '/' ? '首页' : it.meta?.title// i18nTitle
+            meta: it.meta,
+            breadcrumbName: it.path === '/' ? t('menu.home') : t(it.meta?.i18nTitle) // it.meta?.title// i18nTitle
           }
         }) as BreadRoute[],
         itemRender: ({
@@ -71,8 +78,8 @@ export default defineComponent({
         }
       }
       // 设置标题title
-      const title = route?.meta?.title
-      pageContainerState.title = title
+      const title = route?.meta?.i18nTitle
+      pageContainerState.title = t(title)
     }
     watch(() => route.fullPath, handleRouteChange, { immediate: true })
     return () => {
@@ -109,7 +116,7 @@ export default defineComponent({
             ) : null}
           </a-page-header>
           <div class="app-page-container-content">
-            {pageDefaultSlot && pageDefaultSlot.default?.()}
+            { pageDefaultSlot && pageDefaultSlot.default?.() }
           </div>
         </div>
       )

@@ -88,7 +88,6 @@ export default defineComponent({
         }, 1500)
       } catch (e) {
         state.loading = false
-        console.log(e)
       }
     }
 

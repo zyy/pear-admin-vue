@@ -4,7 +4,7 @@
       <a-layout-sider
         class="app-layout-sider"
         collapsible
-        width="220"
+        width="208"
         :collapsedWidth="48"
         @collapse="handleChangeCollapsed"
       >
@@ -19,14 +19,11 @@
         >
           <a>
             <img src="~@/assets/logo.png" alt="">
-            <h1 v-if="!collapsed">Pear Admin Vue</h1>
+            <h1 v-if="!collapsed">Pear Admin</h1>
           </a>
         </div>
         <app-menu
           class="app-layout-sider-menu"
-          v-model:openKeys="openKeys"
-          v-model:selectedKeys="selectedKeys"
-          :menu-list="menuList"
         />
       </a-layout-sider>
       <div :class="[!collapsed ? 'app-layout-sider-hidden' : 'app-layout-sider-hidden-collapsed']"></div>
@@ -36,8 +33,9 @@
         <a-layout-content
           class="app-layout-content"
         >
-          <router-view/>
+          <AppContent></AppContent>
         </a-layout-content>
+        <SettingDrawer />
         <a-layout-footer
           class="app-layout-footer"
         >
@@ -51,57 +49,43 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, toRefs, watch } from 'vue'
-import routes from '@/router/routes'
+import { computed, defineComponent, reactive, toRefs, onMounted } from 'vue'
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons-vue'
 import AppMenu from '@/components/Application/AppMenu/AppMenu.vue'
 import AppHeader from '@/components/Application/AppHeader/AppHeader.vue'
-import { useRoute } from 'vue-router'
+import AppContent from '@/components/Application/AppContent/AppContent.vue'
+import { useStore } from 'vuex'
+import SettingDrawer from '@/components/Application/SettingDrawer/SettingDrawer.vue'
+import themeColor from '@/themes/colorChange.ts'
 
 export default defineComponent({
   name: 'BaseLayout',
   components: {
     AppMenu,
     AppHeader,
+    AppContent,
     MenuFoldOutlined,
-    MenuUnfoldOutlined
+    MenuUnfoldOutlined,
+    SettingDrawer
   },
   setup () {
+    const store = useStore()
     const menuState = reactive({
-      collapsed: false,
-      openKeys: [],
-      selectedKeys: [],
-      preOpenKeys: []
+      collapsed: computed(() => store.state.layout.collapsed)
     })
-    const route = useRoute()
 
     const handleChangeCollapsed = () => {
-      menuState.openKeys = !menuState.collapsed ? [] : menuState.preOpenKeys
-      menuState.collapsed = !menuState.collapsed
+      store.dispatch('layout/toggleCollapsed')
     }
+    const primaryColor = computed(() => store.getters['app/primaryColor'])
 
-    watch(
-      () => menuState.openKeys,
-      (val, oldVal) => {
-        menuState.preOpenKeys = oldVal
-      }
-    )
-
-    watch(() => route.name, () => {
-      const matched = route.matched
-      // todo: types
-      // eslint-disable-next-line
-      const openKeys: any = matched.map(it => it.name)
-      menuState.openKeys = openKeys
-      menuState.selectedKeys = openKeys
-    }, { immediate: true })
-
-    const menuList = routes.find(it => it.path === '/')?.children
+    onMounted(async () => {
+      await themeColor.changeColor(primaryColor.value)
+    })
 
     return {
       ...toRefs(menuState),
-      handleChangeCollapsed,
-      menuList
+      handleChangeCollapsed
     }
   }
 })
@@ -116,7 +100,7 @@ export default defineComponent({
 
   .app-layout {
     width: 100%;
-    height: 100vh;
+    //height: 100vh;
 
     &-sider {
       position: fixed;
@@ -146,7 +130,7 @@ export default defineComponent({
       &-trigger {
         padding-left: 16px;
         text-align: left;
-        background: #001529;
+        //background: #001529;
         width: 100%;
       }
 
