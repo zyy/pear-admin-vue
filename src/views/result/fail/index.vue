@@ -1,6 +1,5 @@
 <template>
-  <page-container content="高级表单常见于一次性输入和提交大批量数据的场景。">
-      <a-card>
+      <a-card class="failure">
         <a-result
     status="error"
     title="Submission Failed"
@@ -28,7 +27,6 @@
     </div>
   </a-result>
       </a-card>
-  </page-container>
 </template>
 
 <script lang="ts">
@@ -41,3 +39,9 @@ export default defineComponent({
   }
 })
 </script>
+
+<style lang="less" scoped>
+.failure{
+  margin:10px
+}
+</style>
