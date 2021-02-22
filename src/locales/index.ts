@@ -1,9 +1,9 @@
 import app from '@/app'
 import { loadLocaleMessages, setupI18n } from './i18n'
-import store from '@/store'
+import config from '@/config/pear.config'
+import storage from 'store'
 
-const DEFAULT_LANG = store.getters['app/language']
-
+const DEFAULT_LANG = storage.get('pear_language') || config.defaultLanguage
 const i18n = setupI18n({
   globalInjection: true,
   legacy: false,
@@ -13,9 +13,9 @@ const i18n = setupI18n({
   }
 })
 
+app.use(i18n)
 loadLocaleMessages(i18n, DEFAULT_LANG).then(() => {
   console.log('init i18n')
 })
-app.use(i18n)
 
 export { i18n }
