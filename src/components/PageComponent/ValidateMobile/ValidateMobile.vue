@@ -26,9 +26,9 @@ export default defineComponent({
   name: 'ValidateMobile',
   props: {
     size: {
-      type: String,
+      type: String as PropType<string>,
       default: 'default',
-      validator (value) {
+      validator: (value: string) => {
         return ['default', 'small', 'large'].includes(value)
       }
     },
@@ -50,7 +50,7 @@ export default defineComponent({
     // classes
     const classes = computed(() => {
       return {
-        'validate-mobile-lg': props.size === 'large',
+        'validate-mobile-lg': props.size as string === 'large',
         'validate-mobile-sm': props.size === 'small',
         'validate-mobile': props.size === 'default'
       }
@@ -66,13 +66,13 @@ export default defineComponent({
     })
 
     // add value and next input focused
-    const handleChange: void = (e: Event, n: number) => {
+    const handleChange = (e: any, n: number): void => {
       if (props.pattern.test(e.data)) {
         state.validateCodes.splice(n, 1, e.data)
         // next input focus
         if (n < props.validateCodeLength - 1) {
           const dom: HTMLRef = domRefs.value[n + 1]
-          dom.focus()
+          dom && dom.focus()
         } else {
           domRefs.value[n].blur()
         }
@@ -81,12 +81,12 @@ export default defineComponent({
     }
 
     // delete Event
-    const handleDelete: void = (e: Event, n: number) => {
+    const handleDelete = (e: any, n: number): void => {
       if (n >= 0) {
         state.validateCodes.splice(n, 1, e.data)
         if (n > 0) {
           const dom: HTMLRef = domRefs.value[n - 1]
-          dom.focus()
+          dom && dom.focus()
         }
       }
       emit('update:modelValue', state.validateCodes.join(''))
