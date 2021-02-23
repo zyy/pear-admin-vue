@@ -25,7 +25,8 @@
       <a-input
         type="password"
         style="width: 80%;"
-        v-model:value="formState.paymentPassword"/>
+        v-model:value="formState.paymentPassword"
+      />
     </a-form-item>
     <a-form-item :wrapperCol="{span: 19, offset: 5}">
       <a-button :loading="loading" type="primary" @click="nextStep">提交</a-button>
@@ -34,9 +35,10 @@
   </a-form>
 </template>
 
-<script lang="ts">
+<script lang="tsx">
 import { defineComponent, markRaw, reactive, toRefs, onUnmounted } from 'vue'
 import { useForm } from '@ant-design-vue/use'
+// import { Modal } from 'ant-design-vue'
 
 interface FormState {
   loading: boolean;
@@ -82,7 +84,7 @@ export default defineComponent({
       state.loading = true
       try {
         const values = await validate()
-        state.timer = setTimeout(function () {
+        state.timer = setTimeout(() => {
           state.loading = false
           emit('next', values)
         }, 1500)
