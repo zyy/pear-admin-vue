@@ -8,8 +8,8 @@
         :size="size"
         class="validate-mobile-code-wrapper-input"
         :class="classes"
-        :value="validateCodes[n -1]"
-        :ref="(el) => {if (el) domRefs[n-1] = el }"
+        :value="validateCodes[n - 1]"
+        :ref="(el) => {if (el) domRefs[n - 1] = el }"
         @change="(e) => handleChange(e, n - 1)"
         @keydown.delete="handleDelete($event, n - 1)"
       ></a-input>
@@ -82,6 +82,7 @@ export default defineComponent({
 
     // delete Event
     const handleDelete = (e: any, n: number): void => {
+      console.log(n)
       if (n >= 0) {
         state.validateCodes.splice(n, 1, e.data)
         if (n > 0) {
@@ -93,11 +94,18 @@ export default defineComponent({
       e.preventDefault()
     }
 
-    watch(() => props.modelValue, value => {
+    watch(() => props.modelValue, (value: string) => {
       if (isEmpty(value)) {
         state.validateCodes = new Array(props.validateCodeLength)
       } else {
-        state.validateCodes = value.toString().substr(0, props.validateCodeLength).split('')
+        /**
+         * 传过来的值跟当前数数不一样时，重新赋值
+           如果一样就不赋值：
+           受form控制时，值若为1234,若删除掉中间3，数组为[1,2,'',4], 此时如果不判断值是否相同，重新赋值则会变为[1,2,4,''] 会打乱顺序
+         */
+        if (state.validateCodes.join('') !== value) {
+          state.validateCodes = value.toString().substr(0, props.validateCodeLength).split('')
+        }
       }
     }, { immediate: true })
 
@@ -126,13 +134,16 @@ export default defineComponent({
     margin-right: 8px;
     text-align: center;
   }
+
   .validate-mobile {
     width: 32px;
     height: 32px;
+
     &-lg {
       width: 40px;
       height: 40px;
     }
+
     &-sm {
       width: 24px;
       height: 24px;

@@ -27,7 +27,7 @@ export default defineComponent({
   name: 'index',
   setup () {
     const state = reactive({
-      validateCodeLength: 6
+      validateCodeLength: 4
     })
     const formState = reactive({
       mobileCode: ''
