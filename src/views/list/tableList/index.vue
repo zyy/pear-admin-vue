@@ -1,5 +1,7 @@
 <template>
-  <page-container></page-container>
+  <page-container>
+    <standard-table />
+  </page-container>
 </template>
 
 <script lang="ts">
