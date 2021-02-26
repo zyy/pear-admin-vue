@@ -1,23 +1,27 @@
-import { defineComponent } from 'vue'
+import { defineComponent, PropType } from 'vue'
 import { tableProps } from 'ant-design-vue/es/table/interface'
-import { PaginationProps } from 'ant-design-vue/es/pagination'
-
+import { getAntdComponentProps } from '@/components/_utils'
 const StandardTable = defineComponent({
   name: 'StandardTable',
   props: Object.assign({}, tableProps, {
     customPagination: {
-      type: PaginationProps,
+      type: Object as PropType<object>,
       default: () => {
         return {}
       }
     }
   }),
-  setup (props) {
-    console.log(props)
-    return () => {
+  setup () {
+    return (props) => {
+      // default table props
+      const defaultTableProps = getAntdComponentProps(tableProps, props)
+      // todo: merge user custom props
+      // todo: merge user custom operation
       return (
         <div class="app-standard-table">
-          <a-table></a-table>
+          <a-table
+            {...defaultTableProps}
+          ></a-table>
         </div>
       )
     }
