@@ -4,14 +4,24 @@ import { getAntdComponentProps } from '@/components/_utils'
 const StandardTable = defineComponent({
   name: 'StandardTable',
   props: Object.assign({}, tableProps, {
-    customPagination: {
-      type: Object as PropType<object>,
-      default: () => {
-        return {}
-      }
+    pageSize: {
+      type: Number as PropType<number>,
+      default: 10
+    },
+    pageNo: {
+      type: Number as PropType<number>,
+      default: 1
+    },
+    total: {
+      type: Number as PropType<number>,
+      default: 0
+    },
+    showPagination: {
+      type: Boolean as PropType<boolean>,
+      default: true
     }
   }),
-  setup () {
+  setup (props) {
     return (props) => {
       // default table props
       const defaultTableProps = getAntdComponentProps(tableProps, props)

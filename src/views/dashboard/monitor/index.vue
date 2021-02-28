@@ -1,5 +1,6 @@
 <template>
-  <page-container></page-container>
+  <page-container>
+  </page-container>
 </template>
 
 <script lang="ts">
