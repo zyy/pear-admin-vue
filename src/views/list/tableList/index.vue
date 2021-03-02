@@ -1,9 +1,11 @@
 <template>
   <page-container>
-    <standard-table
-      :columns="columns"
-    >
-    </standard-table>
+    <a-card>
+      <standard-table
+        :columns="columns"
+      >
+      </standard-table>
+    </a-card>
   </page-container>
 </template>
 
@@ -37,5 +39,8 @@ export default defineComponent({
 </script>
 
 <style scoped lang="less">
-
+::v-deep(.ant-card-body) {
+  padding-top: 0;
+  padding-bottom: 0;
+}
 </style>
