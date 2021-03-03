@@ -1,4 +1,7 @@
-import { defineComponent, onMounted, PropType, reactive, toRefs, watch } from 'vue'
+// @ts-nocheck
+// 先忽略该文件的ts检查，否则 TableTool onRefresh={ctx.refresh}编译不通过。
+// 参见：https://github.com/vuejs/vue-next/pull/2164
+import { defineComponent, onMounted, PropType, reactive, toRefs } from 'vue'
 import { tableProps } from 'ant-design-vue/es/table/interface'
 import { getAntdComponentProps } from '@/components/_utils'
 import './index.less'
@@ -59,17 +62,12 @@ const StandardTable = defineComponent({
     }
 
     const refresh = async () => {
-      console.log('refresh =====')
       await handleFetch()
     }
 
     onMounted(async () => {
       await handleFetch()
     })
-
-    watch(() => state.tableSize, value => {
-      console.log(value)
-    }, { immediate: true })
 
     return {
       ...toRefs(state),
@@ -97,6 +95,7 @@ const StandardTable = defineComponent({
               <slot name="operation"></slot>
               <TableTool
                 v-model={[ctx.tableSize, 'size']}
+                onRefresh={ctx.refresh}
               ></TableTool>
             </a-space>
           </div>
@@ -105,7 +104,8 @@ const StandardTable = defineComponent({
           {
             ...{
               ...defaultTableProps,
-              size: ctx.tableSize
+              size: ctx.tableSize,
+              loading: ctx.tableLoading
             }
           }
           rowKey={(row) => row.id}

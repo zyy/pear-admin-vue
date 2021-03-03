@@ -5,9 +5,7 @@
         <a-tooltip
           title="刷新"
         >
-          <a @click.prevent="refresh">
-            <ReloadOutlined/>
-          </a>
+          <ReloadOutlined @click="refresh"/>
         </a-tooltip>
       </div>
       <div class="table-tool-item">
@@ -17,9 +15,7 @@
           <a-dropdown
             :trigger="['click']"
           >
-            <a @click.prevent>
-              <ColumnHeightOutlined/>
-            </a>
+            <ColumnHeightOutlined/>
             <template #overlay>
               <a-menu
                 @click="handleTableHeight"
@@ -44,30 +40,48 @@
         <a-tooltip
           title="列设置"
         >
-          <a-dropdown
-            :trigger="['click']"
+          <a-popover
+            trigger="click"
+            placement="bottomRight"
           >
-            <a @click.prevent>
-              <SettingOutlined/>
-            </a>
-            <template #overlay>
-<!--              <a-menu-->
-<!--                @click="handleTableHeight"-->
-<!--                :selectedKeys="selectedKeys"-->
-<!--                style="width: 80px;"-->
-<!--              >-->
-<!--                <a-menu-item>-->
-<!--                  <a href="javascript:;">默认</a>-->
-<!--                </a-menu-item>-->
-<!--                <a-menu-item>-->
-<!--                  <a href="javascript:;">中等</a>-->
-<!--                </a-menu-item>-->
-<!--                <a-menu-item>-->
-<!--                  <a href="javascript:;">紧凑</a>-->
-<!--                </a-menu-item>-->
-<!--              </a-menu>-->
+            <template #title>
+              <div class="table-tool-item-column">
+                <a-checkbox>列展示</a-checkbox>
+                <a href="javascript:;">重置</a>
+              </div>
             </template>
-          </a-dropdown>
+            <template #content>
+              columns list
+            </template>
+            <SettingOutlined/>
+          </a-popover>
+<!--          <a-dropdown-->
+<!--            :trigger="['click']"-->
+<!--          >-->
+<!--            <a @click.prevent>-->
+<!--              <SettingOutlined/>-->
+<!--            </a>-->
+<!--            <template #overlay>-->
+<!--              <a-menu>-->
+<!--                <TableColumnsTool></TableColumnsTool>-->
+<!--              </a-menu>-->
+<!--&lt;!&ndash;              <a-menu&ndash;&gt;-->
+<!--&lt;!&ndash;                @click="handleTableHeight"&ndash;&gt;-->
+<!--&lt;!&ndash;                :selectedKeys="selectedKeys"&ndash;&gt;-->
+<!--&lt;!&ndash;                style="width: 80px;"&ndash;&gt;-->
+<!--&lt;!&ndash;              >&ndash;&gt;-->
+<!--&lt;!&ndash;                <a-menu-item>&ndash;&gt;-->
+<!--&lt;!&ndash;                  <a href="javascript:;">默认</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                </a-menu-item>&ndash;&gt;-->
+<!--&lt;!&ndash;                <a-menu-item>&ndash;&gt;-->
+<!--&lt;!&ndash;                  <a href="javascript:;">中等</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                </a-menu-item>&ndash;&gt;-->
+<!--&lt;!&ndash;                <a-menu-item>&ndash;&gt;-->
+<!--&lt;!&ndash;                  <a href="javascript:;">紧凑</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                </a-menu-item>&ndash;&gt;-->
+<!--&lt;!&ndash;              </a-menu>&ndash;&gt;-->
+<!--            </template>-->
+<!--          </a-dropdown>-->
         </a-tooltip>
       </div>
     </a-space>
@@ -92,7 +106,7 @@ export default defineComponent({
     ColumnHeightOutlined,
     SettingOutlined
   },
-  emits: ['update:size'],
+  emits: ['update:size', 'refresh'],
   setup (props, { emit }) {
     const state = reactive({
       selectedKeys: [] as SelectedKeys
@@ -107,8 +121,7 @@ export default defineComponent({
     }
 
     const refresh = () => {
-      console.log('dddd')
-      // todo emit event to table component
+      emit('refresh')
     }
 
     return {
@@ -121,6 +134,15 @@ export default defineComponent({
 </script>
 
 <style scoped lang="less">
+::v-deep(.ant-popover-title) {
+  min-width: 177px;
+  min-height: 32px;
+  margin: 0;
+  padding: 5px 16px 4px;
+  color: rgba(0,0,0,.85);
+  font-weight: 500;
+  border-bottom: 1px solid #f0f0f0;
+}
 .table-tool {
   width: 100%;
   height: auto;
@@ -129,6 +151,13 @@ export default defineComponent({
     margin: 0 4px;
     font-size: 16px;
     cursor: pointer;
+    &-column {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-content: center;
+      padding: 5px 0 4px 0;
+    }
   }
 }
 </style>
