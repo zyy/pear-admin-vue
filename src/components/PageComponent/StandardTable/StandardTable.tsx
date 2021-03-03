@@ -76,10 +76,8 @@ const StandardTable = defineComponent({
     }
   },
   render: ctx => {
-    console.log(ctx)
     // default table props
     const defaultTableProps = getAntdComponentProps(tableProps, ctx)
-    defaultTableProps.dataSource = ctx.tableData
     // todo: merge user custom props
     // todo: merge user custom operation
     return (
@@ -105,10 +103,11 @@ const StandardTable = defineComponent({
             ...{
               ...defaultTableProps,
               size: ctx.tableSize,
-              loading: ctx.tableLoading
+              loading: ctx.tableLoading,
+              dataSource: ctx.tableData,
+              rowKey: (row) => row.id
             }
           }
-          rowKey={(row) => row.id}
         ></a-table>
       </div>
     )

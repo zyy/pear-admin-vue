@@ -55,33 +55,6 @@
             </template>
             <SettingOutlined/>
           </a-popover>
-<!--          <a-dropdown-->
-<!--            :trigger="['click']"-->
-<!--          >-->
-<!--            <a @click.prevent>-->
-<!--              <SettingOutlined/>-->
-<!--            </a>-->
-<!--            <template #overlay>-->
-<!--              <a-menu>-->
-<!--                <TableColumnsTool></TableColumnsTool>-->
-<!--              </a-menu>-->
-<!--&lt;!&ndash;              <a-menu&ndash;&gt;-->
-<!--&lt;!&ndash;                @click="handleTableHeight"&ndash;&gt;-->
-<!--&lt;!&ndash;                :selectedKeys="selectedKeys"&ndash;&gt;-->
-<!--&lt;!&ndash;                style="width: 80px;"&ndash;&gt;-->
-<!--&lt;!&ndash;              >&ndash;&gt;-->
-<!--&lt;!&ndash;                <a-menu-item>&ndash;&gt;-->
-<!--&lt;!&ndash;                  <a href="javascript:;">默认</a>&ndash;&gt;-->
-<!--&lt;!&ndash;                </a-menu-item>&ndash;&gt;-->
-<!--&lt;!&ndash;                <a-menu-item>&ndash;&gt;-->
-<!--&lt;!&ndash;                  <a href="javascript:;">中等</a>&ndash;&gt;-->
-<!--&lt;!&ndash;                </a-menu-item>&ndash;&gt;-->
-<!--&lt;!&ndash;                <a-menu-item>&ndash;&gt;-->
-<!--&lt;!&ndash;                  <a href="javascript:;">紧凑</a>&ndash;&gt;-->
-<!--&lt;!&ndash;                </a-menu-item>&ndash;&gt;-->
-<!--&lt;!&ndash;              </a-menu>&ndash;&gt;-->
-<!--            </template>-->
-<!--          </a-dropdown>-->
         </a-tooltip>
       </div>
     </a-space>
@@ -112,7 +85,6 @@ export default defineComponent({
       selectedKeys: [] as SelectedKeys
     })
     // init in props
-    console.log('table tool ==> ', Array.of(props.size as string))
     state.selectedKeys = Array.of(props.size as string)
 
     const handleTableHeight = ({ key }) => {
