@@ -3,6 +3,7 @@
     <a-card>
       <standard-table
         :columns="columns"
+        :fetch="fetchData"
       >
       </standard-table>
     </a-card>
@@ -11,6 +12,7 @@
 
 <script lang="ts">
 import { defineComponent, reactive, toRefs } from 'vue'
+import request from '@/api/request'
 
 export default defineComponent({
   name: 'index',
@@ -22,17 +24,30 @@ export default defineComponent({
           dataIndex: 'name'
         },
         {
-          title: 'Age',
-          dataIndex: 'age'
+          title: 'UseName',
+          dataIndex: 'username'
         },
         {
-          title: 'Address',
-          dataIndex: 'address'
+          title: 'Email',
+          dataIndex: 'email'
+        },
+        {
+          title: 'Phone',
+          dataIndex: 'phone'
+        },
+        {
+          title: 'WebSite',
+          dataIndex: 'website'
         }
       ]
     })
+    const fetchList = async () => {
+      const { data } = await request('https://jsonplaceholder.typicode.com/users')
+      return data
+    }
     return {
-      ...toRefs(state)
+      ...toRefs(state),
+      fetchData: fetchList
     }
   }
 })
