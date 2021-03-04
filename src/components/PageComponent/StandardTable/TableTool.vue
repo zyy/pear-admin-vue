@@ -40,6 +40,7 @@
         <a-tooltip
           title="列设置"
         >
+          <svg-icon name="lang"></svg-icon>
           <a-popover
             trigger="click"
             placement="bottomRight"
@@ -51,7 +52,9 @@
               </div>
             </template>
             <template #content>
-              columns list
+              <div class="table-tool-item-content">
+                <div class="table-tool-item-column-content-item"></div>
+              </div>
             </template>
             <SettingOutlined/>
           </a-popover>
@@ -62,16 +65,27 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, reactive, toRefs } from 'vue'
-import { ReloadOutlined, ColumnHeightOutlined, SettingOutlined } from '@ant-design/icons-vue'
+import { defineComponent, PropType, reactive, toRefs, watch } from 'vue'
+import {
+  ReloadOutlined,
+  ColumnHeightOutlined,
+  SettingOutlined
+} from '@ant-design/icons-vue'
+import { ColumnProps } from 'ant-design-vue/es/table/interface'
 
-type SelectedKeys = string[];
+export interface TableToolState {
+  selectedKeys: string[];
+  toolColumns: ColumnProps[];
+}
 
 export default defineComponent({
   name: 'TableTool',
   props: {
     size: {
       type: String as PropType<string>
+    },
+    columns: {
+      type: Array as PropType<ColumnProps[]>
     }
   },
   components: {
@@ -81,11 +95,17 @@ export default defineComponent({
   },
   emits: ['update:size', 'refresh'],
   setup (props, { emit }) {
-    const state = reactive({
-      selectedKeys: [] as SelectedKeys
+    const state: TableToolState = reactive({
+      selectedKeys: [],
+      toolColumns: []
     })
     // init in props
-    state.selectedKeys = Array.of(props.size as string)
+    watch(() => props, p => {
+      state.selectedKeys = Array.of(p.size) as string[]
+      // columns
+      const cols = [...p.columns as ColumnProps[]]
+      state.toolColumns = cols
+    }, { immediate: true })
 
     const handleTableHeight = ({ key }) => {
       state.selectedKeys = Array.of(key)
@@ -111,10 +131,15 @@ export default defineComponent({
   min-height: 32px;
   margin: 0;
   padding: 5px 16px 4px;
-  color: rgba(0,0,0,.85);
+  color: rgba(0, 0, 0, .85);
   font-weight: 500;
   border-bottom: 1px solid #f0f0f0;
 }
+
+::v-global(.ant-popover-inner-content) {
+  padding: 0 0 8px !important;
+}
+
 .table-tool {
   width: 100%;
   height: auto;
@@ -123,12 +148,17 @@ export default defineComponent({
     margin: 0 4px;
     font-size: 16px;
     cursor: pointer;
+
     &-column {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
       align-content: center;
       padding: 5px 0 4px 0;
+    }
+
+    &-contet {
+      &-item {}
     }
   }
 }

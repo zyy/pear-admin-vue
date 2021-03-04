@@ -1,12 +1,11 @@
 // @ts-nocheck
 // 先忽略该文件的ts检查，否则 TableTool onRefresh={ctx.refresh}编译不通过。
 // 参见：https://github.com/vuejs/vue-next/pull/2164
-import { defineComponent, onMounted, PropType, reactive, toRefs } from 'vue'
+import { defineComponent, onMounted, PropType, reactive, toRefs, watch } from 'vue'
 import { tableProps } from 'ant-design-vue/es/table/interface'
 import { getAntdComponentProps } from '@/components/_utils'
 import './index.less'
 import TableTool from '@/components/PageComponent/StandardTable/TableTool.vue'
-// api test url https://jsonplaceholder.typicode.com/users
 const StandardTable = defineComponent({
   name: 'StandardTable',
   components: {
@@ -44,8 +43,14 @@ const StandardTable = defineComponent({
     const state = reactive({
       tableSize: props.size,
       tableData: [],
-      tableLoading: false
+      tableLoading: false,
+      tableColumns: []
     })
+
+    watch(() => props, p => {
+      state.tableSize = p.size
+      state.tableColumns = p.columns
+    }, { immediate: true })
 
     const handleFetch = async () => {
       if (typeof props.fetch === 'function') {
@@ -54,7 +59,7 @@ const StandardTable = defineComponent({
           const data = await props.fetch()
           state.tableData = data
         } catch (e) {
-          // todo reset state
+          state.tableData = []
         } finally {
           state.tableLoading = false
         }
@@ -93,6 +98,7 @@ const StandardTable = defineComponent({
               <slot name="operation"></slot>
               <TableTool
                 v-model={[ctx.tableSize, 'size']}
+                v-model={[ctx.tableColumns, 'columns']}
                 onRefresh={ctx.refresh}
               ></TableTool>
             </a-space>
