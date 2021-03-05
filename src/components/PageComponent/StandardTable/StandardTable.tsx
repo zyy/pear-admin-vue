@@ -50,7 +50,7 @@ const StandardTable = defineComponent({
     watch(() => props, p => {
       state.tableSize = p.size
       state.tableColumns = p.columns
-    }, { immediate: true })
+    }, { immediate: true, deep: true })
 
     const handleFetch = async () => {
       if (typeof props.fetch === 'function') {

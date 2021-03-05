@@ -57,10 +57,10 @@
                   :key="index"
                 >
                   <div
-                    class="table-tool-item-column-content-item"
+                    class="table-tool-item-content-row"
                   >
                     <svg-icon name="drag" class="drag-icon"></svg-icon>
-                    <span>{{col.title}}</span>
+                    <a-checkbox>{{col.title}}</a-checkbox>
                   </div>
                 </template>
               </div>
@@ -166,9 +166,13 @@ export default defineComponent({
       padding: 5px 0 4px 0;
     }
 
-    &-contet {
-      &-item {
+    &-content {
+      padding: 4px 0;
+      &-row {
+        padding-top: 8px;
         .drag-icon {
+          width: 24px;
+          padding-right: 6px;
           cursor: move;
         }
       }

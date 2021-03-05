@@ -2,6 +2,7 @@
   <page-container>
     <a-card>
       <standard-table
+        size="small"
         :columns="columns"
         :fetch="fetchData"
       >
