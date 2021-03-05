@@ -19,7 +19,7 @@
       </a-menu>
     </template>
     <span class="action">
-      <a><img src="~@/assets/custom-icons/lang.svg" alt=""></a>
+      <SvgIcon name="lang" style="font-size: 16px;"></SvgIcon>
     </span>
   </a-dropdown>
 </template>

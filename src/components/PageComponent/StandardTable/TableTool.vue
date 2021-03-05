@@ -40,7 +40,6 @@
         <a-tooltip
           title="列设置"
         >
-          <svg-icon name="lang"></svg-icon>
           <a-popover
             trigger="click"
             placement="bottomRight"
@@ -53,7 +52,17 @@
             </template>
             <template #content>
               <div class="table-tool-item-content">
-                <div class="table-tool-item-column-content-item"></div>
+                <template
+                  v-for="(col, index) in toolColumns"
+                  :key="index"
+                >
+                  <div
+                    class="table-tool-item-column-content-item"
+                  >
+                    <svg-icon name="drag" class="drag-icon"></svg-icon>
+                    <span>{{col.title}}</span>
+                  </div>
+                </template>
               </div>
             </template>
             <SettingOutlined/>
@@ -158,7 +167,11 @@ export default defineComponent({
     }
 
     &-contet {
-      &-item {}
+      &-item {
+        .drag-icon {
+          cursor: move;
+        }
+      }
     }
   }
 }
