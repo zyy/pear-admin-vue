@@ -22,8 +22,7 @@ export default defineComponent({
       })
     )
     return {
-      antdLocal,
-      defaultLang
+      antdLocal
     }
   }
 })
