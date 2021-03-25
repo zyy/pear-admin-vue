@@ -5,7 +5,9 @@ const path = require('path')
 const fs = require('fs')
 const lessToJs = require('less-vars-to-js')
 
-const themeVariables = lessToJs(fs.readFileSync(path.join(__dirname, './src/themes/pear-theme-vars.less'), 'utf8'))
+const resolve = dir => path.resolve(__dirname, dir)
+
+const themeVariables = lessToJs(fs.readFileSync(resolve('./src/themes/pear-theme-vars.less'), 'utf8'))
 
 const config = {
   publicPath: '/',
@@ -20,6 +22,23 @@ const config = {
   },
   configureWebpack: {
     plugins: []
+  },
+  chainWebpack: config => {
+    config.module
+      .rule('svg')
+      .exclude.add(resolve('src/assets/icons'))
+      .end()
+    config.module
+      .rule('icons')
+      .test(/\.svg$/)
+      .include.add(resolve('src/assets/icons'))
+      .end()
+      .use('svg-sprite-loader')
+      .loader('svg-sprite-loader')
+      .options({
+        symbolId: 'icon-[name]'
+      })
+      .end()
   },
   devServer: {
     open: true,

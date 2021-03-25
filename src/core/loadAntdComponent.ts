@@ -17,8 +17,8 @@ import {
   Col,
   Modal,
   Table,
+  Tree,
   Tabs,
-  Icon,
   Badge,
   Popover,
   Dropdown,
@@ -61,8 +61,8 @@ app.use(Row)
 app.use(Col)
 app.use(Modal)
 app.use(Table)
+app.use(Tree)
 app.use(Tabs)
-app.use(Icon)
 app.use(Badge)
 app.use(Popover)
 app.use(Dropdown)

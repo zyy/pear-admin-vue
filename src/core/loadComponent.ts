@@ -1,6 +1,7 @@
 import { Component } from 'vue'
 import app from '@/app'
-const requireContext = require.context('@/components/PageComponent/', true, /([\w+]\.(vue|tsx|ts))/)
+// const requireContext = require.context('@/components/PageComponent/', true, /([\w+]\.(vue|tsx|ts))/)
+const requireContext = require.context('@/components/PageComponent/', true, /([index]\.(ts))/)
 
 interface Modules {
   [key: string]: Component;

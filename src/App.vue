@@ -1,20 +1,28 @@
 <template>
-  <a-config-provider :locale="locale">
+  <a-config-provider :locale="antdLocal">
     <router-view />
   </a-config-provider>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { computed, defineComponent, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
-import config from '@/config/pear.config'
+import { useStore } from 'vuex'
 
 export default defineComponent({
   name: 'App',
   setup () {
-    const { getLocaleMessage } = useI18n({ useScope: 'global' })
-    const locale = getLocaleMessage(config.defaultLanguage)
+    const store = useStore()
+    const defaultLang = computed(() => store.getters['app/language'])
+
+    const antdLocal = ref(
+      computed(() => {
+        const { getLocaleMessage } = useI18n({ useScope: 'global' })
+        const locale = getLocaleMessage(defaultLang.value).antdLocal
+        return locale
+      })
+    )
     return {
-      locale
+      antdLocal
     }
   }
 })

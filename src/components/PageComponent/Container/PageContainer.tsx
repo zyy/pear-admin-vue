@@ -46,7 +46,7 @@ export default defineComponent({
       pageContainerState.breadcrumb.routes.forEach(it => {
         it.breadcrumbName = it.path === '/' ? t('menu.home') : t(it.meta?.i18nTitle)
       })
-      const title = route?.meta?.i18nTitle
+      const title = route?.meta?.i18nTitle as string
       pageContainerState.title = t(title)
     }, { deep: true })
 
@@ -58,7 +58,7 @@ export default defineComponent({
             name: it.name,
             path: it.path,
             meta: it.meta,
-            breadcrumbName: it.path === '/' ? t('menu.home') : t(it.meta?.i18nTitle) // it.meta?.title// i18nTitle
+            breadcrumbName: it.path === '/' ? t('menu.home') : t(it.meta?.i18nTitle as string) // it.meta?.title// i18nTitle
           }
         }) as BreadRoute[],
         itemRender: ({
@@ -78,7 +78,7 @@ export default defineComponent({
         }
       }
       // 设置标题title
-      const title = route?.meta?.i18nTitle
+      const title = route?.meta?.i18nTitle as string
       pageContainerState.title = t(title)
     }
     watch(() => route.fullPath, handleRouteChange, { immediate: true })
